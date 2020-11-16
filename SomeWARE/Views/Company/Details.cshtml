@@ -1,0 +1,39 @@
+﻿@model DetailsViewModel
+<div>
+    <h1>@Model.Name</h1>
+    <hr />
+    Address <h3>@Model.Street</h3> <h3>@Model.Number</h3>
+    Postcode <h3>@Model.Postcode</h3>
+    City <h3>@Model.City</h3>
+    Country <h3>@Model.Country</h3>
+    <hr />
+    <div>
+        @if (Model.Warehouses.Count == 0)
+        {
+            <h2>You have not set up your warehouses yet</h2>
+        }
+        else
+        {
+            <h3>Warehouses</h3>
+            foreach (var w in Model.Warehouses)
+            {
+                <a asp-action="Explore" asp-controller="Warehouse" asp-route-id="@w.Id">@w.Code</a>
+                <a asp-action="Delete" asp-controller="Warehouse" asp-route-id="@w.Id" asp-route-companyId="@Model.CompanyId">X</a>
+            }
+        }
+    </div>
+    <h3></h3>
+    <button onclick="location.href='@Url.Action("Edit", "Warehouse", new { companyId = Model.CompanyId })'">SET UP NEW WAREHOUSE</button>
+    <hr />
+    <h3>Item list</h3>
+    @foreach (var item in Model.Items)
+    {
+        <div>
+            <a>@item.Name</a>
+            <a asp-action="Delete" asp-controller="Item" asp-route-id="@item.Id" asp-route-companyId="@item.CompanyId">X</a>
+        </div>
+    }
+    <button onclick="location.href='@Url.Action("Edit", "Item", new { companyId = Model.CompanyId })'">ADD NEW ITEM</button>
+    <hr />
+    <button onclick="location.href='@Url.Action("Index", "Company")'">BACK</button>
+</div>

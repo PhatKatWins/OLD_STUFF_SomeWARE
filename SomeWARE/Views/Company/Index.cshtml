@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Company>
+
+    <div>
+        <h1>Companies</h1>
+        <hr />
+        @foreach (var c in Model)
+        {
+            <div>
+                <a asp-action="Details" asp-controller="Company" asp-route-id="@c.Id">@c.Name</a>
+                <a asp-action="Remove" asp-controller="Company" asp-route-id="@c.Id">X</a>
+                <h5>***</h5>
+            </div>
+        }
+        <hr />
+        <button onclick="location.href='@Url.Action("Index", "Home")'">Back</button>
+    </div>

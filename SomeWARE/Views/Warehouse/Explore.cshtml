@@ -1,0 +1,17 @@
+﻿@model ExploreViewModel
+
+<div>
+    <h2>Exploring warehouse @Model.Code</h2>
+    <hr />
+    <div>
+        @foreach (var a in Model.Aisles)
+        {
+            <h3>Aisle @a</h3>
+            foreach (var b in Model.Bins)
+            {
+                <a>Bin @b</a>
+            }
+            <hr />
+        }
+    </div>
+</div>

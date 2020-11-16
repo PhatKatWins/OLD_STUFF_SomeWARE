@@ -1,0 +1,28 @@
+﻿@model SomeWARE.ViewModels.CompanyViewModel
+    <div>
+        <h2>Add new company</h2>
+        <hr />
+        <form asp-action="Edit" asp-controller="Company" method="post">
+            <div>
+                <label>Name</label>
+                <input asp-for="Name" />
+            </div>
+            <h4>ADDRESS</h4>
+            <div>
+                <label>Street</label>
+                <input asp-for="Street" />
+                <label>Number</label>
+                <input asp-for="Number" />
+                <label>Postcode</label>
+                <input asp-for="Postcode" />
+                <label>City</label>
+                <input asp-for="City" />
+                <label>Country</label>
+                <input asp-for="Country" />
+            </div>
+            <h3></h3>
+            <input type="submit" value="SUBMIT" />
+        </form>
+        <hr />
+        <button onclick="location.href='@Url.Action("Index", "Home")'">Back</button>
+    </div>

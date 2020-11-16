@@ -1,0 +1,40 @@
+﻿@model ItemViewModel
+
+<div>
+    <h2>Edit item custom message</h2>
+    <hr />
+    <h3>Step 1: Item details</h3>
+    <form asp-action="Edit" asp-controller="Item" method="post">
+        <input asp-for="@Model.CompanyId" type="hidden" />
+        <div>
+            <label>Name</label>
+            <input asp-for="@Model.Name" />
+            <label>Price</label>
+            <input asp-for="@Model.Price" type="number" step="0.01" />
+        </div>
+        <hr />
+        <h3>Step 2: Set up quantities and availability</h3>
+        <div>
+            @for (int i = 0; i < Model.WarehouseCodes.Count; i++)
+            {
+                <input asp-for="@Model.WarehouseCodes[i]" type="hidden" />
+                <label>@Model.WarehouseCodes[i]</label>
+                <input asp-for="@Model.WarehouseQuantities[i]" type="number" min="0" />
+                <select asp-for="@Model.Aisles[i] ">
+                    @foreach (var aisle in Model.AislesPerWarehouse[i])
+                    {
+                        <option value="@aisle">@aisle</option>
+                    }
+                </select>
+                <select asp-for="@Model.Bins[i]">
+                    @foreach (var bin in Model.BinsPerWarehouse[i])
+                    {
+                        <option value="@bin">@bin</option>
+                    }
+                </select>
+                <h5></h5>
+            }
+        </div>
+        <input type="submit" />
+    </form>
+</div>
